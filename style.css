@@ -1,6 +1,48 @@
-article{
+article {
     display: flex;
     flex-direction: column;
+    font-family: 'Jal_Onuel';
+
+}
+
+html {
+    background-color: #525864;
+}
+
+body {
+    background-color: rgb(40, 35, 35);
+}
+
+.name {
+    color: orange;
+}
+
+.tt {
+    color: orange;
+}
+
+.exp {
+    color: white;
+}
+
+.q {
+    color: white;
+}
+
+.good {
+    color: rgb(8, 199, 242);
+}
+
+.bad {
+    color: rgb(210, 86, 34);
+}
+
+.just {
+    color: violet;
+}
+
+.celeb{
+    color: rgb(230, 230, 17);
 }
 
 .question {
@@ -35,4 +77,11 @@ article{
 
 .banner-img {
     width: 300px;
+}
+
+@font-face {
+    font-family: 'Jal_Onuel';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }

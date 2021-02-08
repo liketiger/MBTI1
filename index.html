@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>세렝게티 동물 테스트</title>
+    <title>영단어 MBTI 테스트</title>
     <meta name="description" content="나랑 꼭 닮은 세렝게티 동물을 MBTI기반으로 추천해주는 웹사이트 입니다.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="세렝게티 동물 테스트">
@@ -25,24 +25,30 @@
             data-ad-height="250"></ins>
     </div>
     <article class="start">
-        <h1 class="mt-5 text-center">나랑 꼭 닮은 세렝게티 동물은?</h1>
-        <button type="button" class="btn btn-primary mt-5" onclick="start();">테스트 시작하기</button>
+        <h1 class="mt-5 text-center tt">영단어 MBTI</h1>
+        <h1 class="mt-5 text-center tt">나랑 어울리는 영단어는?</h1>
+        <button type="button" class="btn btn-light mt-5 stb" onclick="start();">테스트 시작하기</button>
     </article>
     <article class="question">
         <div class="progress mt-5">
             <div class="progress-bar" role="progressbar" style="width: calc(100/12*1%)"></div>
         </div>
-        <h2 id="title" class="text-center mt-5">문제</h2>
+        <h2 id="title" class="text-center mt-5 q">문제</h2>
         <input id="type" type="hidden" value="EI">
-        <button id="A" type="button" class="btn btn-info mt-5">Info</button>
-        <button id="B" type="button" class="btn btn-dark mt-5">Dark</button>
+        <button id="A" type="button" class="btn btn-warning mt-5">Info</button>
+        <button id="B" type="button" class="btn btn-warning mt-5">Dark</button>
     </article>
     <article class="result">
         <img id="img" class="rounded-circle mt-5" src="lion.jpg" alt="animal">
-        <h2 id="animal" class="text-center mt-5">동물이름</h2>
-        <h3 id="explain" class="text-center mt-5">설명</h3>
+        <h2 id="animal" class="text-center mt-5 name">영어단어</h2>
+        <h3 id="explain" class="text-left mt-5 exp">설명</h3>
+        <h3 id="others" class="text-left mt-5 celeb">나와 같은 유형의 유명인들</h3>
+        <h3 id="good_match" class="text-center mt-5 good">좋은 궁합</h3>
+        <h3 id="bad_match" class="text-center mt-5 bad">안좋은 궁합</h3>
+        <h3 id="just_match" class="text-center mt-5 just">보통 궁합</h3>
+        <button type="button" class="btn btn-danger mt-5" onclick="pageReload();">다시하기</button>
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <div class="addthis_inline_share_toolbox share"></div>
+        <div class="addthis_inline_share_toolbox share mt-5"></div>
     </article>
     <article class="kakao_ad mt-5">
         <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-L2knRzFVMeYGX0Zw" data-ad-width="320"
@@ -71,158 +77,222 @@
         var num = 1;
         var q = {
             1: {
-                "title": "문제 1번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "EI",
-                "A": "E",
-                "B": "I"
+                "A": "Broad (넓은)",
+                "B": "Deep (깊은)"
             },
             2: {
-                "title": "문제 2번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "EI",
-                "A": "E",
-                "B": "I"
+                "A": "Passionate (열정적인)",
+                "B": "Discrete (신중한)"
             },
             3: {
-                "title": "문제 3번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "EI",
-                "A": "E",
-                "B": "I"
+                "A": "Socialize (어울리다)",
+                "B": "Solitude (고독)"
             },
             4: {
-                "title": "문제 4번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "SN",
-                "A": "S",
-                "B": "N"
+                "A": "Visual (시각의)",
+                "B": "Inspiration (영감)"
             },
             5: {
-                "title": "문제 5번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "SN",
-                "A": "S",
-                "B": "N"
+                "A": "The Simpsons (심슨네 가족들)",
+                "B": "Futurama (퓨처라마)"
             },
             6: {
-                "title": "문제 6번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "SN",
-                "A": "S",
-                "B": "N"
+                "A": "Precision (정밀)",
+                "B": "Expeditious (신속한)"
             },
             7: {
-                "title": "문제 7번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "TF",
-                "A": "T",
-                "B": "F"
+                "A": "Facts don't care about my feelings (팩트들은 나의 감정을 신경쓰지 않는다)",
+                "B": "My feelings don't care about facts (내 감정은 팩트들을 신경쓰지 않는다)"
             },
             8: {
-                "title": "문제 8번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "TF",
-                "A": "T",
-                "B": "F"
+                "A": "Analysis (분석)",
+                "B": "Relationship (관계)"
             },
             9: {
-                "title": "문제 9번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "TF",
-                "A": "T",
-                "B": "F"
+                "A": "Objective (객관적인)",
+                "B": "Circumstantial (정황적인)"
             },
             10: {
-                "title": "문제 10번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "JP",
-                "A": "J",
-                "B": "P"
+                "A": "Punctuality (시간 엄수)",
+                "B": "Flexibility (융통성)"
             },
             11: {
-                "title": "문제 11번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "JP",
-                "A": "J",
-                "B": "P"
+                "A": "Script (대본)",
+                "B": "Improv (애드립)"
             },
             12: {
-                "title": "문제 12번",
+                "title": "내가 선호 하는 단어는?",
                 "type": "JP",
-                "A": "J",
-                "B": "P"
+                "A": "Safe surveillance (안전한 감시)",
+                "B": "Unsafe freedom (불안전한 자유)"
             },
         }
         var result = {
             "ISTJ": {
-                "animal": "하마",
-                "explain": "하마 설명",
-                "img": "lion.jpg"
+                "animal": "Vulcan (벌컨 - 논리주의자형)",
+                "explain": "당신은 논리주의자로 실용적이며 팩트에 기반한 사고를 갖고 있으므로 특정 부분에 관하여 주변으로부터 얻는 신뢰성이 높습니다. 성격 특성상 어딜가나 최소 1인분은 하지만 인기가 많은 타입은 아닙니다.",
+                "img": "img/vulcan.jpg",
+                "good match": "Activist (액티비스트 - 활동가형)",
+                "bad match": "Crusader (크루세이더 - 사회운동가형)",
+                "just match": "Executive (이그제큐티브 - 관리자형)",
+                "others": "스팅, 덴젤 워싱턴, 안젤라 메르켈, 나탈리 포트만"
             },
             "ISFJ": {
-                "animal": "부엉이",
-                "explain": "부엉이 설명",
-                "img": "lion.jpg"
+                "animal": "Defender (디펜더 - 수호자형)",
+                "explain": "당신은 매우 헌신적이며 따뜻한 보호자로 항상 당신이 사랑하는 존재를 지키기 위해 준비 되어있습니다. 또한, 따뜻한 말로 관계의 조화를 만드는 역할을 하지만 가끔 과보호로 인해 잘못된 선택을 하지 않도록 주의해야합니다.",
+                "img": "img/defender.png",
+                "good match": "Debater (디베이터 - 변론가형)",
+                "bad match": "Commander (커맨더 - 통솔자형)",
+                "just match": "Arbiter (아비터 - 중재자형)",
+                "others": "비욘세, 엘리자베스 2세, 빈 디젤, 앤 해서웨이"
             },
             "INFJ": {
-                "animal": "물소",
-                "explain": "물소 설명",
-                "img": "lion.jpg"
+                "animal": "Advocate (아드보카트 - 옹호자형)",
+                "explain": "당신은 조용하고 신비롭지만 매우 고무적이고 지치지 않는 이상주의자입니다. 강한 이상향과 도덕적 관념을 갖고 있지만 가끔은 현실과 타협을 해야하는 고통이 있습니다.",
+                "img": "img/advocate.jpg",
+                "good match": "Enterpriser (엔터프라이저 - 사업가형)",
+                "bad match": "Executive (이그제큐티브 - 관리자형)",
+                "just match": "Commander (커맨더 - 통솔자형)",
+                "others": "마틴 루터 킹, 넬슨 만델라, 마더 테레사, 레이디 가가"
             },
             "INTJ": {
-                "animal": "치타",
-                "explain": "치타 설명",
-                "img": "lion.jpg"
+                "animal": "Architect (아키텍트 - 전략가형)",
+                "explain": "당신은 상상력이 풍부하며 전략적인 사고를 하는 전략가이며 항상 모든것에 계획을 세우는 것을 좋아합니다. 매우 이상적인 성격이지만 계획대로 되는 상황은 적기 때문에 계획 세우는 시간을 줄이고 먼저 실행하여 시행착오를 겪어 보는것이 도움이 될 수 있습니다.",
+                "img": "img/architect.jpg",
+                "good match": "Celebrity (셀레브리티 - 연예인형)",
+                "bad match": "Consul (카운슬 - 외교관형)",
+                "just match": "Virtuoso (버츄어소 - 재주꾼형)",
+                "others": "프리드리히 니체, 미쉘 오바마, 일론 머스크, 크리스토퍼 놀란"
             },
             "ISTP": {
-                "animal": "나무늘보",
-                "explain": "나무늘보 설명",
-                "img": "lion.jpg"
+                "animal": "Virtuoso (버츄어소 - 재주꾼형)",
+                "explain": "당신은 대담하고 실용적인 실험자로 여러 도구를 잘 다룹니다. 직접 손으로 뭔가를 만지고 창조하는 것에서 행복을 느낍니다. 모든게 디지털화되는 시대에 맞춰 intangible한 도구에도 익숙해질 필요가 있습니다.",
+                "img": "img/virtuoso.jpg",
+                "good match": "Crusader (크루세이더 - 사회운동가형)",
+                "bad match": "Activist (액티비스트 - 활동가형)",
+                "just match": "Enterpriser (엔터프라이저 - 사업가형)",
+                "others": "베어 그릴스, 마이클 조던, 클린트 이스트우드, 다니얼 크레이그"
             },
             "ISFP": {
-                "animal": "거북이",
-                "explain": "거북이 설명",
-                "img": "lion.jpg"
+                "animal": "Artist (아티스트 - 예술가형)",
+                "explain": "당신은 융통성있고 매력적인 예술가로 모험을 좋아하며 항상 새로운 것을 경험하고 탐험할 준비가 되어있습니다. 본인의 독창적인 창의력으로 끊임없이 새상에 새로움과 아름다움을 전파해보세요!",
+                "img": "img/artist.jpg",
+                "good match": "Commander (커맨더 - 통솔자형)",
+                "bad match": "Debater (디베이터 - 변론가형)",
+                "just match": "Celebrity (셀레브리티 - 연예인형)",
+                "others": "정국, 에이브릴 라빈, 프리다 칼로, 브리트니 스피어스"
             },
             "INFP": {
-                "animal": "코끼리",
-                "explain": "코끼리 설명",
-                "img": "lion.jpg"
+                "animal": "Arbiter (아비터 - 중재자형)",
+                "explain": "당신은 시적이고 이타적인 사람으로 항상 좋은 일에 도움을 주고자 합니다. 최악의 상황에서도 열정적으로 희망을 찾는 당신은 이상주의자입니다. 좋은 뜻으로요.",
+                "img": "img/arbiter.png",
+                "good match": "Executive (이그제큐티브 - 관리자형)",
+                "bad match": "Advocate (아드보카트 - 옹호자형)",
+                "just match": "Arbiter (아비터 - 중재자형)",
+                "others": "J.R.R 톨킨, 윌리엄 셰익스피어, 앨리샤 키스, 톰 히들스턴"
             },
             "INTP": {
-                "animal": "침팬지",
-                "explain": "침팬지 설명",
-                "img": "lion.jpg"
+                "animal": "Logician (로지션 - 사색가형)",
+                "explain": "당신은 혁신적인 발명가로 지식에 대한 해소되지 않는 갈증이 있습니다. 독창성과 창의력으로 끊임없이 지적 호기심을 쫓는 당신은 필로소퍼입니다. '하늘과 바다는 비록 먹물처럼 검다해도 네가 아는 우리 마음은 빛으로 가득 차 있다. 지옥이든 천국이든 아무려면 어떠랴, 미지의 심연속에서 새로운 것을 찾을 수만 있다면...'",
+                "img": "img/logician.jpg",
+                "good match": "Consul (카운슬 - 외교관형)",
+                "bad match": "Celebrity (셀레브리티 - 연예인형)",
+                "just match": "Activist (액티비스트 - 활동가형)",
+                "others": "빌 게이츠, 크리스틴 스튜어트, 알버트 아인슈타인, 아이작 뉴턴"
             },
             "ESTP": {
-                "animal": "악어",
-                "explain": "악어 설명",
-                "img": "lion.jpg"
+                "animal": "Enterpriser (엔터프라이저 - 사업가형)",
+                "explain": "당신은 똑똑하고, 에너지가 넘치며 통찰력있는 사람입니다. 항상 위험에 도전하고 하이리스크 하이리턴을 선호합니다. 남들이 도전하지 않는 어려운 문제에 직접 몸으로 부딪혀 해결해나가고 남들보다 더 큰 보상을 가져가는 기업가 정신을 가진 사람입니다. 도전한다고 다 성공하는건 아니지만 성공한 사람들중엔 도전하지 않은 사람은 없습니다.",
+                "img": "img/enterpriser.jpg",
+                "good match": "Advocate (아드보카트 - 옹호자형)",
+                "bad match": "Arbiter (아비터 - 중재자형)",
+                "just match": "Consul (카운슬 - 외교관형)",
+                "others": "어네스트 헤밍웨이, 마돈나, 브루스 윌리스, 행크 슈레이더"
             },
             "ESFP": {
-                "animal": "미어캣",
-                "explain": "미어캣 설명",
-                "img": "lion.jpg"
+                "animal": "Celebrity (셀레브리티 - 연예인형)",
+                "explain": "당신은 즉흥적이고 에너지가 넘치며 열정적인 사람입니다. 당신 주변의 사람들은 항상 삶이 즐겁습니다. 자유로운 영혼을 가진 당신은 다른 사람들을 당신에게 빠져들게 만듭니다. 당신같은 사람들은 천년만년을 살아야합니다.",
+                "img": "img/celebrity.jpg",
+                "good match": "Architect (아키텍트 - 전략가형)",
+                "bad match": "Logician (로지션 - 사색가형)",
+                "just match": "Artist (아티스트 - 예술가형)",
+                "others": "엘튼 존, 단델라이언, 아델, 아담 리바인"                
             },
             "ENFP": {
-                "animal": "멋쟁이 사자",
-                "explain": "멋쟁이 사자 설명",
-                "img": "lion.jpg"
+                "animal": "Activist (액티비스트 - 활동가형)",
+                "explain": "당신은 열정적이고 창의적이며, 사회적이면서 자유로운 영혼을 갖고 있습니다. 웃을 이유를 항상 찾을 수 있으며 자유로운 사고의 소유자로 분위기 메이커 역할을해 주변 사람들과 좋은 관계를 유지합니다. 누구든 좋아하는 무난한 성격으로 딱히 단점은 없으나 특출난 장점도 없습니다.",
+                "img": "img/activist.jpg",
+                "good match": "Vulcan (벌컨 - 논리주의자형)",
+                "bad match": "Virtuoso (버츄어소 - 재주꾼형)",
+                "just match": "Artist (아티스트 - 예술가형)",
+                "others": "로버트 다우니 주니어, 쿠엔틴 타란티노, RM, 윌 스미스"
             },
             "ENTP": {
-                "animal": "태양새",
-                "explain": "태양새 설명",
-                "img": "lion.jpg"
+                "animal": "Debater (디베이터 - 변론가)",
+                "explain": "당신은 영리하고 호기심 많은 사상가로 지적 도전을 거부할 수 없는 타입입니다. 논쟁을 피하지 않으며 그에 맞는 지식을 함양하고 있습니다. 가끔은 져주는 것도 고려해보세요.",
+                "img": "img/debater.jpg",
+                "good match": "Defender (디펜더 - 수호자형)",
+                "bad match": "Artist (아티스트 - 예술가형)",
+                "just match": "Arbiter (아비터 - 중재자형)",
+                "others": "마크 트웨인, 톰 행크스, 토마스 에디슨, 셀린 디온"
             },
             "ESTJ": {
-                "animal": "기린",
-                "explain": "기린 설명",
-                "img": "lion.jpg"
+                "animal": "Executive (이그제큐티브 - 관리자형)",
+                "explain": "당신은 훌륭한 관리자로, 사람이나 물건을 관리하는데 뛰어난 능력을 보여줍니다. 자신이 옳다고 생각하는 방향으로 나아가며 가끔 성향이 과하면 control freak 소리를 들을 수 있으니 주의하세요.",
+                "img": "img/executive.jpg",
+                "good match": "Arbiter (아비터 - 중재자형)",
+                "bad match": "Defender (디펜더 - 수호자형)",
+                "just match": "Enterpriser (엔터프라이저 - 사업가형)",
+                "others": "존 D. 록펠러, 프랭크 시나트라, 롭 스타크, 보로미르"
             },
             "ESFJ": {
-                "animal": "고릴라",
-                "explain": "고릴라 설명",
-                "img": "lion.jpg"
+                "animal": "Consul (카운슬 - 외교관형)",
+                "explain": "당신은 오지랖이 오지게 넓으며 사회적이고 인기가 많습니다. 항상 도움을 못 줘 안달나 있습니다. 전형적인 인기있는 스타일이며 그 관계 유지 여부는 당신이 얼마나 카운슬링을 잘하는지에 달려있습니다.",
+                "img": "img/consul.jpg",
+                "good match": "Logician (로지션 - 사색가형)",
+                "bad match": "Architect (아키텍트 - 전략가형)",
+                "just match": "Enterpriser (엔터프라이저 - 사업가형)",
+                "others": "테일러 스위프트, 빌 클린턴, 제니퍼 로페즈, 딘 윈체스터"
             },
             "ENFJ": {
-                "animal": "카피바라",
-                "explain": "카피바라 설명",
-                "img": "lion.jpg"
+                "animal": "Crusader (크루세이더 - 사회운동가형)",
+                "explain": "당신은 카리스마있고 고무적인 지도자입니다. 당신은 청중을 빠져들게 하는 매력을 갖고 있습니다. 정의로운 마음으로 사회에 선한 영향을 펼칠 수 있습니다. '나는 아무것도 바라지 않는다. 나는 아무것도 두렵지 않다. 나는 자유다.'",
+                "img": "img/crusader.jpg",
+                "good match": "Virtuoso (버츄어소 - 재주꾼형)",
+                "bad match": "Vulcan (벌컨 - 논리주의자형)",
+                "just match": "Debater (디베이터 - 변론가)",
+                "others": "버락 오바마, 오프라 윈프리, 존 쿠삭, 벤 애플렉"
             },
             "ENTJ": {
-                "animal": "호랑이",
-                "explain": "호랑이 설명",
-                "img": "lion.jpg"
+                "animal": "Commander (커맨더 - 통솔자형)",
+                "explain": "당신은 대담하고 상상력이 풍부하며 강한 의지를 가진 지도자입니다. 천성적으로 타고난 리더로 카리스마와 자신감에 다른 사람들이 빠져들 것입니다. 당신은 언제나 그렇듯 길을 찾을 것이며 길이 없다면 길을 만들 것입니다. '안 되면 되게 하라'",
+                "img": "img/commander.jpg",
+                "good match": "Artist (아티스트 - 예술가형)",
+                "bad match": "Defender (디펜더 - 수호자형)",
+                "just match": "Advocate (아드보카트 - 옹호자형)",
+                "others": "스티브 잡스, 고든 램지, 마가렛 대처, 프랭클린 D. 루스벨트"
             }
         }
 
@@ -241,6 +311,10 @@
             next();
         });
 
+        function pageReload() {
+            window.location.reload();
+        }
+
         function next() {
             if (num == 13) {
                 $(".question").hide();
@@ -253,6 +327,10 @@
                 $("#img").attr("src", result[mbti]["img"]);
                 $("#animal").html(result[mbti]["animal"]);
                 $("#explain").html(result[mbti]["explain"]);
+                $("#good_match").html("나와 좋은 궁합 : " + result[mbti]["good match"]);
+                $("#bad_match").html("나와 안 좋은 궁합 : " + result[mbti]["bad match"]);
+                $("#just_match").html("나름 괜찮은 궁합 : " + result[mbti]["just match"]);
+                $("#others").html("나와 같은 유형의 사람들 : " + result[mbti]["others"]);
             } else {
                 $(".progress-bar").attr('style', 'width: calc(100/12*' + num + '%)');
                 $("#title").html(q[num]["title"]);

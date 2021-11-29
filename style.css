@@ -105,3 +105,10 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+
+.centerme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
